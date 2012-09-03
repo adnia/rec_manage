@@ -1,0 +1,162 @@
+<!--
+<?php
+	require_once($_SERVER['document_root']."/receipt/inc/db.php");
+?>
+-->
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>RoMaDa Receipt Management - Insert Receipt</title>
+		<meta charset="utf-8" />
+
+		<script type="text/javascript">
+		<!-- // Replace by PHP script
+			function today() {
+				date = new Date();
+				return date.getFullYear() + "-" + 
+					(( date.getMonth() + 1 < 10 ) ? "0" : "") + // 0-fillup
+					(date.getMonth() + 1) + "-" +
+					date.getDate();
+			}
+
+			window.onload = function() {
+				document.getElementById("date").value = today();
+			};
+		//-->
+		</script>
+
+		<style type="text/css">
+			article {
+				padding: 1em;
+				width: 80%;
+				border: 2px solid black;
+				margin: auto;
+			}
+
+			.formgroup {
+				border: 1px solid #777;
+				overflow: auto;
+				clear: both;
+				margin: 10px 0;
+				padding: 0.5em;
+			}
+			
+			.centered {
+				border: 1px solid blue;
+				text-align: center;
+				clear: both;
+				overflow: auto;
+				display: inline-block;
+			}
+
+			.shop {
+				position: relative;
+				width: 100px;
+				text-align: center;
+				margin:     .2em;
+				width:      100px;
+				border:     1px dotted #ccc;
+				display:    block;
+				float:      left;
+			}
+
+			.shop .logo {
+				width:      100px;
+				height:     100px;
+				line-height:100px;
+				height: 100px;
+				width: 100px;
+				display: block;
+			}
+
+			.shop .logo img {
+				vertical-align: middle;
+			}
+
+			.shop input {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+			}
+
+			.right {
+				text-align: right;
+			}
+
+			#submit {
+				width: 200px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<article>
+		<h1>Insert Receipt</h1>
+		
+		<form id="insert_bon" action="insertform.html" method="post">
+			<div id="date_div" class="formgroup">
+				<label for="date">Date:</label>
+				<input type="date" id="date" name="date" value="" pattern="\d{4}-\d{2}-\d{2}" />
+				<small><i>(YYYY-MM-DD if date picker is not popping up)</i></small>
+			</div>
+
+			<div id="date_div" class="formgroup">
+				<label for="cash_value">Cash Value:</label>
+				<input type="number" id="cash_value" name="cash_value" value="0.00" pattern="\d*\.\d{2}" class="right" /> <b><i>&euro;</i></b>
+				<i><small>(x.xx)</small></i>
+			</div>
+
+			<div id="user_div" class="formgroup">
+				<label>User:</label> <span><i><small>(Static for now, maybe fancy login stuff later)</small></i></span><br />
+				<!--
+				<?php
+					// User handling instead of fixed list here				
+				?>
+				-->
+				<input type="radio" id="user1" name="user" value="roman" required />
+				<label for="user1">Roman Matzutt</label><br />
+				<input type="radio" id="user2" name="user" value="matthias" required />
+				<label for="user2">Matthias Schrammen</label><br />
+				<input type="radio" id="user3" name="user" value="daniel" required />
+				<label for="user3">Daniel Schnitzler</label><br />
+			</div>
+
+			<div id="shop_div" class="formgroup">
+				<label>Shop:</label><br />
+				
+				<!--<?php
+					//getShops(); // Fetch list of registered shops instead of static list
+				?>-->
+				<div class="centered">
+					<div class="shop">
+						<label for="netto" class="logo"><img src="logos/netto.png"></label>
+						<input type="radio" id="netto" name="shop" value="netto" required />
+					</div>
+	
+					<div class="shop">
+						<label for="aldi"><img src="logos/aldi.png"></label>
+						<input type="radio" id="aldi" name="shop" value="aldi" required />
+					</div>
+	
+					<div class="shop">
+						<label for="kaisers"><img src="logos/kaisers.png"></label>
+						<input type="radio" id="kaisers" name="shop" value="kaisers" required />
+					</div><br /><!-- Use break line is ok, just showcase for script -->
+	
+					<div class="shop">
+						<label for="sonstiges"><img src="logos/sonstiges.png"></label>
+						<input type="radio" id="sonstiges" name="shop" value="sonstiges" required />
+					</div>
+				</div>
+			</div>
+
+			<div id="submit_div" class="formgroup">
+				<center><input type="submit" id="submit" name="submit" value="Submit" /></center>
+			</div>
+		</form>
+		</article>
+	</body>
+</html>
